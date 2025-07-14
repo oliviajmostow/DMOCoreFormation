@@ -4,9 +4,8 @@ import matplotlib.pyplot as plt
 from readData.DataLoader import DataLoader
 from matplotlib.colors import LogNorm
 import matplotlib as mpl
-import pandas as pd
-import calculations
-import shared_data
+import helperfunctions.calculations as calculations
+import helperfunctions.shared_data as shared_data
 
 rmin = 0.038
 rmax = 10
@@ -15,12 +14,11 @@ sphere_samples = 200
 radial_samples = 50
 DesNgb = 32
 h = 0.6909
-
+basedir = '/standard/torrey-group/DMOCoreFormation/ClassicalDwarves'
 
 def main():
         fig, ax = shared_data.set_plot_params()
-        runs2=['../m10_ic0_sg_713/output', '../updated_125e8out/b62/output', '../updated_125e8out/b31/output','../updated_125e8out/b20/output','../updated_125e8out/b10/output','../updated_m10_713s/s8b5/output','../updated_125e8out/b3/output','../updated_125e8out/b2/output','../updated_125e8out/b1_1/output']
-        runs = np.array(runs2)[[0,-4, -3, -2, -1]]
+        runs = [f'{basedir}/smoothmodel/output', f'{basedir}/variablemass/s8b5/output',f'{basedir}/fixedmass/b3/output',f'{basedir}/fixedmass/b2/output',f'{basedir}/fixedmass/b1_1/output']
         density_list = []
         all_r = np.logspace(np.log10(rmin), np.log10(rmax), radial_samples)
         for i in range(len(runs)):
@@ -57,11 +55,6 @@ def main():
             g=0
             b=1-r
             ax.plot(all_r, y1, color=(r,g,b), label=z1)
-        #cb = fig.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=mymap), ax=ax, label='Number of Bursts')
-        #cbar = fig.colorbar(CS3, ax=ax)
-        #cbar.set_label('Number of Bursts', size=16)
-        #cbar.set_ticks(np.array([1,2,3.5,5]) + 0.5)
-        #cbar.set_ticklabels(np.array([1,2,3,5]))
         ax.plot(all_r, density_sg, color='black')
         ax.set_ylim((1000, density_sg.max()*5))
         ax.set_xscale('log')

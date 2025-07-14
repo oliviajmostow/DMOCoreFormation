@@ -5,9 +5,8 @@ from readData.DataLoader import DataLoader
 import matplotlib.cm as cm
 import matplotlib as mpl
 import pandas as pd
-import calc_alpha
 from  astropy.cosmology import FlatLambdaCDM, z_at_value
-import shared_data
+import helperfunctions.shared_data as shared_data
 def main():
         cosmo = FlatLambdaCDM(H0=69.09, Om0=.3, Tcmb0=2.725)
         fig, ax = shared_data.set_plot_params(nrows=1, ncols=2)
@@ -46,24 +45,24 @@ def main():
         x_2e7 = np.repeat(2e7, len(t_2e7))/0.6909
 
         #get core radii
-        rc_1e4 = pd.read_csv('m8m1rcs.txt', header=None)
-        rc_1e5 = pd.read_csv('m2rcs.txt', header=None)
-        rc_4e5 = pd.read_csv('m4e5rcs.txt', header=None)
-        rc_8e5 = pd.read_csv('m8e5rcs.txt', header=None)
-        rc_2e6 = pd.read_csv('m2e6rcs.txt', header=None)
-        rc_5e6 = pd.read_csv('m5e6rcs.txt', header=None)
-        rc_1e7 = pd.read_csv('m1e7rcs.txt', header=None)
-        rc_2e7 = pd.read_csv('m2e7rcs.txt', header=None)
+        rc_1e4 = pd.read_csv('../data/fig6data/m8m1rcs.txt', header=None)
+        rc_1e5 = pd.read_csv('../data/fig6data/m2rcs.txt', header=None)
+        rc_4e5 = pd.read_csv('../data/fig6data/m4e5rcs.txt', header=None)
+        rc_8e5 = pd.read_csv('../data/fig6data/m8e5rcs.txt', header=None)
+        rc_2e6 = pd.read_csv('../data/fig6data/m2e6rcs.txt', header=None)
+        rc_5e6 = pd.read_csv('../data/fig6data/m5e6rcs.txt', header=None)
+        rc_1e7 = pd.read_csv('../data/fig6data/m1e7rcs.txt', header=None)
+        rc_2e7 = pd.read_csv('../data/fig6data/m2e7rcs.txt', header=None)
 
         #get alphas
-        a_1e4 = pd.read_csv('m8m1slopes.txt', header=None)
-        a_1e5 = pd.read_csv('m2slopes.txt', header=None)
-        a_4e5 = pd.read_csv('m4e5slopes.txt', header=None)
-        a_8e5 = pd.read_csv('m8e5slopes.txt', header=None)
-        a_2e6 = pd.read_csv('m2e6slopes.txt', header=None)
-        a_5e6 = pd.read_csv('m5e6slopes.txt', header=None)
-        a_1e7 = pd.read_csv('m1e7slopes.txt', header=None)
-        a_2e7 = pd.read_csv('m2e7slopes.txt', header=None)
+        a_1e4 = pd.read_csv('../data/fig6data/m8m1slopes.txt', header=None)
+        a_1e5 = pd.read_csv('../data/fig6data/m2slopes.txt', header=None)
+        a_4e5 = pd.read_csv('../data/fig6data/m4e5slopes.txt', header=None)
+        a_8e5 = pd.read_csv('../data/fig6data/m8e5slopes.txt', header=None)
+        a_2e6 = pd.read_csv('../data/fig6data/m2e6slopes.txt', header=None)
+        a_5e6 = pd.read_csv('../data/fig6data/m5e6slopes.txt', header=None)
+        a_1e7 = pd.read_csv('../data/fig6data/m1e7slopes.txt', header=None)
+        a_2e7 = pd.read_csv('../data/fig6data/m2e7slopes.txt', header=None)
 
         #pairs of alphas
         ya = [a_1e4, a_1e5, a_4e5, a_8e5, a_2e6, a_5e6, a_1e7, a_2e7]

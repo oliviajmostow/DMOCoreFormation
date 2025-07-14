@@ -5,17 +5,16 @@ from readData.DataLoader import DataLoader
 from matplotlib.colors import BoundaryNorm
 import matplotlib as mpl
 import pandas as pd
-import cd_function
 import shared_data
 import matplotlib as mpl
 def main():
     #plt.rc('axes', labelsize=20)
     s1=18
     s2=24
-    s7 = pd.read_csv('ups7rcs_min038.txt', header=None)[0]
-    s8 = pd.read_csv('ups8rcs_min038.txt', header=None)[0]
-    s9 = pd.read_csv('ups9rcs_min038.txt', header=None)[0]
-    s10 = pd.read_csv('ups10rcs_min038.txt', header=None)[0]
+    s7 = pd.read_csv('../data/fig2data/ups7rcs_min038.txt', header=None)[0]
+    s8 = pd.read_csv('../data/fig2data/ups8rcs_min038.txt', header=None)[0]
+    s9 = pd.read_csv('../data/fig2data/ups9rcs_min038.txt', header=None)[0]
+    s10 = pd.read_csv('../data/fig2data/ups10rcs_min038.txt', header=None)[0]
     fig, ax = shared_data.set_plot_params(ncols=2)
     rc_ax = ax[1]
     a_ax = ax[0]
@@ -73,10 +72,10 @@ def main():
 
 
     #with alpha
-    s7 = pd.read_csv('ups7slope.txt', header=None)[0]
-    s8 = pd.read_csv('ups8slope.txt', header=None)[0]
-    s9 = pd.read_csv('ups9slope.txt', header=None)[0]
-    s10 = pd.read_csv('ups10slope.txt', header=None)[0]
+    s7 = pd.read_csv('../data/fig2data/ups7slope.txt', header=None)[0]
+    s8 = pd.read_csv('../data/fig2data/ups8slope.txt', header=None)[0]
+    s9 = pd.read_csv('../data/fig2data/ups9slope.txt', header=None)[0]
+    s10 = pd.read_csv('../data/fig2data/ups10slope.txt', header=None)[0]
     m10_alphas = np.empty([4,5])
     m10_alphas[0] = np.round(s7, decimals=2)
     m10_alphas[1] = np.round(s8, decimals=2)

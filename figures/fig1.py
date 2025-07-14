@@ -1,13 +1,13 @@
-
 import numpy as np
 import matplotlib.pyplot as plt
-from readData.DataLoader import DataLoader
+from helperfunctions.readData.DataLoader import DataLoader
 from  astropy.cosmology import FlatLambdaCDM
 import pandas as pd
-import shared_data
-import sg
-import makehaloimg as himg
-import calculations
+import helperfunctions.shared_data as shared_data
+import helperfunctions.sg as sg
+import sys
+import helperfunctions.makehaloimg as himg
+import helperfunctions.calculations as calculations
 from matplotlib.colors import LogNorm,LinearSegmentedColormap
 import matplotlib as mpl
 import matplotlib.gridspec as gridspec
@@ -21,7 +21,7 @@ sphere_samples = 200
 radial_samples = 50
 DesNgb = 32
 h = 0.6909
-
+basedir = '/standard/torrey-group/DMOCoreFormation/'
 def main():
         plt.rc('font',**{'family':'STIXGeneral'})
         plt.rc('text', usetex=True)
@@ -48,8 +48,8 @@ def main():
         minsnap=20
         #tracer mass plots
         #read in needed data
-        df1 = pd.read_csv('shmr_t.txt', header=None)
-        df2 = pd.read_csv('tracer_t.txt', header=None)
+        df1 = pd.read_csv('../data/fig1data/shmr_t.txt', header=None)
+        df2 = pd.read_csv('../data/fig1data/tracer_t.txt', header=None)
         stellar_mass = df1[1]
         t = df1[0]
 
@@ -91,7 +91,7 @@ def main():
         #density plots
         h = 0.6909
         all_r = np.logspace(np.log10(rmin), np.log10(rmax), radial_samples)
-        sgpath = '../m10_ic0_sg_713/output'
+        sgpath = f'{basedir}/ClassicalDwarves/smoothmodel/output'
         sg_density = []
         sgcat = DataLoader(sgpath, snap, 1, ['Masses','Coordinates','SubhaloPos'], sub_idx=0)
         sgcoords = sgcat['PartType1/Coordinates']/h - sgcat['SubhaloPos']/h
@@ -109,7 +109,7 @@ def main():
         ax_cusp_dens.set_ylabel('Density ($M_{\odot}$/kpc$^3$)')
         ax_cusp_dens.set_ylim(1e4, 1e9)
         ax_cusp_dens.set_xlabel('Radius (kpc)')
-        bpath = '../updated_m10_713s/s8b5/output'
+        bpath = f'{basedir}/ClassicalDwarves/variablemass/s8b5/output'
         b_density = []
         bcat = DataLoader(bpath, snap, 1, ['Masses','Coordinates','SubhaloMass','SubhaloPos'], sub_idx=0)
         bcoords = bcat['PartType1/Coordinates']/h - bcat['SubhaloPos']/h

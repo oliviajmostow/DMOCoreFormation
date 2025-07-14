@@ -3,9 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from readData.DataLoader import DataLoader
 from matplotlib.colors import LogNorm
-import shared_data
-import calculations
-import cd_function
+import helperfunctions.shared_data as shared_data
+import helperfunctions.calculations as calculations
 
 rmin = 0.038
 rmax = 30
@@ -14,7 +13,8 @@ sphere_samples = 200
 radial_samples = 30
 DesNgb = 32
 h = 0.6909
-path = '../m8_sg_g2_038/output'
+basedir = '/standard/torrey-group/DMOCoreFormation/Ultrafaints'
+path = f'{basedir}/smoothmodel/output'
 all_density = []
 cat = DataLoader(path, snap, 1, ['Masses','Coordinates','GroupPos','SubhaloMass','SubhaloPos', 'GroupMassType'], sub_idx=0)
 coords = cat['PartType1/Coordinates']/h - cat['SubhaloPos']/h
@@ -33,7 +33,7 @@ def main():
         ax.plot(all_r, all_density, color='black', label='Smooth model')
         
         #single burst
-        path = '../m8soft038/m1_r7/sb_mass8-output'
+        path = f'{basedir}/singleburst/m8_1e4out/m1_r7/output'
         all_density = []
         cat2 = DataLoader(path, snap, 1, ['Masses','Coordinates','GroupPos','SubhaloMass','SubhaloPos', 'GroupMassType'], sub_idx=0)
         coords2 = cat2['PartType1/Coordinates']/h - cat2['SubhaloPos']/h
